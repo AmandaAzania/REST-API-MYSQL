@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const pool = require("../../config/database");
 const { checkToken } = require("../../auth/token_validation");
 const {
   createUser,

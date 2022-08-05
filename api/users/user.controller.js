@@ -8,6 +8,7 @@ const {
 } = require("./user.service");
 const { hashSync, genSaltSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
+const pool = require("../../config/database");
 
 module.exports = {
   createUser: (req, res) => {

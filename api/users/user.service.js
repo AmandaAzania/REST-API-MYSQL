@@ -3,15 +3,15 @@ const pool = require("../../config/database");
 module.exports = {
   create: (data, callBack) => {
     pool.query(
-      `insert into registration(firstName, lastName, gender, email, password, number) 
+      `insert into users(firstname, lastname, gender, address, email, userpassword,) 
                 values(?,?,?,?,?,?)`,
       [
         data.first_name,
         data.last_name,
         data.gender,
+        data.address,
         data.email,
-        data.password,
-        data.number
+        data.userpassword
       ],
       (error, results, fields) => {
         if (error) {
@@ -23,7 +23,7 @@ module.exports = {
   },
   getUserByUserEmail: (email, callBack) => {
     pool.query(
-      `select * from registration where email = ?`,
+      `select * from users where email = ?`,
       [email],
       (error, results, fields) => {
         if (error) {
@@ -47,7 +47,7 @@ module.exports = {
   },
   getUsers: callBack => {
     pool.query(
-      `select id,firstName,lastName,gender,email,number from registration`,
+      `select id, firstname, lastname, gender, address, email, from users`,
       [],
       (error, results, fields) => {
         if (error) {
@@ -59,14 +59,14 @@ module.exports = {
   },
   updateUser: (data, callBack) => {
     pool.query(
-      `update registration set firstName=?, lastName=?, gender=?, email=?, password=?, number=? where id = ?`,
+      `update users set firstname=?, lastname=?, gender=?, email=?, userpassword=?, address=? where id = ?`,
       [
         data.first_name,
         data.last_name,
         data.gender,
         data.email,
-        data.password,
-        data.number,
+        data.userpassword,
+        data.address,
         data.id
       ],
       (error, results, fields) => {
@@ -79,7 +79,7 @@ module.exports = {
   },
   deleteUser: (data, callBack) => {
     pool.query(
-      `delete from registration where id = ?`,
+      `delete from users where id = ?`,
       [data.id],
       (error, results, fields) => {
         if (error) {
